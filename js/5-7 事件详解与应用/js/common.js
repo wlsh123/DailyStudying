@@ -11,7 +11,7 @@ function getScroll(){
  * 获取鼠标在页面上的位置
  */
 function getPage(e){
-    let e = e || window.event;
+    var e = e || window.event;
     var pageX = e.pageX || e.clientX + getScroll().scrollLeft;
     var pageY = e.pageY || e.clientY + getScroll().scrollTop;
     return {pageX:pageX, pageY:pageY}
