@@ -16,3 +16,4 @@ function getPage(e){
     var pageY = e.pageY || e.clientY + getScroll().scrollTop;
     return {pageX:pageX, pageY:pageY}
 }
+
