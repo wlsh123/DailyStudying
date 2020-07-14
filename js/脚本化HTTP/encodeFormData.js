@@ -38,3 +38,15 @@ function getData(url, data, callback) {
     };
     request.send(null);
 }
+
+//使用JSON编码主体来发起POST请求
+function postJSON(url, data, callback) {
+    var request = new XMLHttpRequest();
+    request.open("POST", url);
+    request.onreadystatechange = function () {
+        if (request.readyState === 4 && callback)
+            callback(request);
+    };
+    request.setRequestHeader("Content-Type", "application/json");
+    request.send(JSON.stringify(data)); //把json数据转换成string
+}
