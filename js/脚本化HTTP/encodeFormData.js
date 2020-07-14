@@ -16,7 +16,7 @@ function encodeFormData(data) {
     return pairs.join("&"); //返回使用”&“链接的名/值对
 }
 
-
+//使用表单编码数据发送一个HTTP post请求
 function postData(url, data, callback) {
     var request = new XMLHttpRequest();
     request.open("POST", url); //对指定URL发生POST请求
@@ -26,4 +26,15 @@ function postData(url, data, callback) {
     };
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     request.send(encodeFormData(data)); //发送表单编码的数据
+}
+
+//使用表单编码数据发送GET请求
+function getData(url, data, callback) {
+    var request = new XMLHttpRequest();
+    request.open("GET", url + "?" + encodeFormData(data)); //通过添加的编码数据获取指定的url
+    request.onreadystatechange = function () {
+        if (request.readyState === 4 && callback)
+            callback(request);
+    };
+    request.send(null);
 }
