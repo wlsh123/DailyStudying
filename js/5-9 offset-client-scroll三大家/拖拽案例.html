@@ -69,6 +69,11 @@
         document.onmouseup = function(){
             document.onmousemove = null;
         }
+        //点击取消按钮，隐藏盒子
+        var close = document.getElementById("box_close");
+        close.onclick = function(){
+            box.style.display = "none";
+        }
     </script>
 </body>
 </html>
