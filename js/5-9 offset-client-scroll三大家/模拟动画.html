@@ -24,13 +24,18 @@
     var btn = document.getElementById("btn");
     var box = document.getElementById("box");
     //1.点击鼠标让box移动
+        var timerId = null;
         btn.onclick = function () {
-            //2.让box不停移动
-            var timeId = setInterval(() => {
+            if (timerId) {
+                clearInterval(timerId);
+                timerId = null;
+            }
+            //2.让box不停移动      
+            timerId = setInterval(function(){
                 var target = 600;
                 var step = 5;
                 if (box.offsetLeft >= target) {
-                    clearInterval(timeId);
+                    clearInterval(timerId);
                     box.style.left = target + 'px';
                     return;
                 }
