@@ -22,3 +22,7 @@ $npm install -g create-react-app
 $ create-react-app my-app
 $ cd my-app/
 $ npm start
+
+
+
+react项目的所有node_modules文件都删了，要想执行需要先 npm install一下
