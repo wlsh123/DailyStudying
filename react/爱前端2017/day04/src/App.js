@@ -1,36 +1,34 @@
 import React, { Component } from 'react'
-import FormattedDate from './FormattedDate'
+import Child from './Child'
+import PropTypes from 'prop-types'
 export default class App extends Component {
-    constructor(props){
-        super(props);
+    constructor(){
+        super();
         this.state = {
-            date: new Date()
-        };
+            a: 100
+        }
     }
-    componentDidMount(){
-        this.timerId = setInterval(()=>{
-            this.tick()
-        }, 1000);
-    }
-    componentWillUnmount(){
-        clearInterval(this.timerId);
-    }
-    tick(){
+    //巧计
+    addA(){
         this.setState({
-            date: new Date(),
-            age: 20
+            a: this.state.a + 1
         });
     }
-
+    getChildContext(){
+        return {
+            a:this.state.a,
+            addA:(this.addA).bind(this)
+        }
+    }
+    static childContextTypes = {
+        a:PropTypes.number.isRequired,
+        addA:PropTypes.func.isRequired
+    }
     render() {
         return (
             <div>
-                <h1>Hello world!</h1>
-                <h2>现在是{this.state.date.toLocaleTimeString()}.</h2>
-                <hr/>
-                <FormattedDate date={this.state.date} name="张三"></FormattedDate>
-                <FormattedDate date={this.state.date} name="李四" age={this.state.age}></FormattedDate>
-                <FormattedDate date={this.state.date} name="王五">这是子元素</FormattedDate>
+                <div>爷爷组件{this.state.a}<input type="button" value="a++" onClick={()=>{this.setState({a:this.state.a + 1})}}/></div>
+                <Child />
             </div>
         )
     }
